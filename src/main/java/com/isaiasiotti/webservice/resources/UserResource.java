@@ -16,6 +16,7 @@ import com.isaiasiotti.webservice.entities.User;
 import com.isaiasiotti.webservice.services.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -55,4 +56,9 @@ public class UserResource {
     return ResponseEntity.noContent().build();
   }
 
+  @PutMapping("/{id}")
+  public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
+    user = userService.update(id, user);
+    return ResponseEntity.ok().body(user);
+  }
 }
