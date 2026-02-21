@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.autoconfigure.WebMvcProperties.Apiversion.Use;
 import org.springframework.stereotype.Service;
 
 import com.isaiasiotti.webservice.entities.User;
@@ -22,5 +23,13 @@ public class UserService {
   public User findById(Long id) {
     Optional<User> user = userRepository.findById(id);
     return user.get();
+  }
+
+  public User insert(User user) {
+    return userRepository.save(user);
+  }
+
+  public void delete(Long id) {
+    userRepository.deleteById(id);
   }
 }
